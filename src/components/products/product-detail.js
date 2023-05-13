@@ -31,7 +31,7 @@ function ProductDetail() {
             {isLoading && <div>Loading...</div>}
             {!isLoading && (
                 <div>
-                    <img src={fetchImage(product.main_image?.url)} alt={product.title} />
+                    <img src={fetchImage(product.main_image?.url)} alt={product.title} width='600px' height='400px' />
                     <h2>{product.title}</h2>
                     <p>{product.description}</p>
                     <p>posted by: {product.user.username}</p>
