@@ -10,7 +10,7 @@ function PostItem({post}) {
             </div>
             <div className="card-footer text-muted">
                 Posted on {post.createdAt} by
-                <Link to="#"> {post.user.name}</Link>
+                <Link to="#"> {post.user?.username}</Link>
             </div>
         </div>
     );

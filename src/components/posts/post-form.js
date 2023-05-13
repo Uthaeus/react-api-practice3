@@ -1,10 +1,46 @@
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { useNavigate } from "react-router";
+
+import { UserContext } from "../../store/user-context";
 
 function PostForm({post}) {
     const { register, handleSubmit, error } = useForm();
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    function buildForm(data) {
+        const formData = new FormData();
+        formData.append('post[user_id]', user.id);
+        formData.append('post[title]', data.title);
+        formData.append('post[body]', data.body);
+        formData.append('post[image]', data.image[0]);
+        return formData;
+    }
 
     function submitHandler(data) {
         console.log(data);
+        const formData = buildForm(data);
+
+        fetch('http://localhost:4000/posts', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('practice_token')}`
+            },
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                navigate('/posts');
+                return response.json();
+            } else {
+                throw new Error('Something went wrong');
+            }
+        })
+        .catch(error => {
+            console.log('post form submit error:', error);
+        });
+
     }
 
     return (
