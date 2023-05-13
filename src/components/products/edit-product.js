@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import ProductForm from "./product-form";
 
@@ -27,6 +27,7 @@ function EditProduct() {
   return (
     <div>
       <h1>Edit Product</h1>
+        <Link to="/products">Back to Products</Link>
       <hr />
       {isLoading ? <div>Loading...</div> : <ProductForm product={product} />}
     </div>
