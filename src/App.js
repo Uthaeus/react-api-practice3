@@ -13,6 +13,9 @@ import Signup from "./components/auth/signup";
 import MeetupDetail from "./components/meetups/meetup-detail";
 import EditMeetup from "./components/meetups/edit-meetup";
 import NewMeetup from "./components/meetups/new-meetup";
+import PostDetail from "./components/posts/post-detail";
+import EditPost from "./components/posts/edit-post";
+import NewPost from "./components/posts/new-post";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +46,18 @@ const router = createBrowserRouter([
       {
         path: "/posts",
         element: <Posts />
+      },
+      {
+        path: "/posts/:id/edit",
+        element: <EditPost />
+      },
+      {
+        path: "/posts/new",
+        element: <NewPost />
+      },
+      {
+        path: "/posts/:id",
+        element: <PostDetail />
       },
       {
         path: "/products",
