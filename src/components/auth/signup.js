@@ -1,7 +1,13 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { useContext } from "react";
+
+import { UserContext } from "../../store/user-context";
 
 function Signup() {
     const { register, handleSubmit, error } = useForm();
+    const navigate = useNavigate();
+    const userCtx = useContext(UserContext);
 
     function submitHandler(data) {
         if (data.password !== data.confirmPassword) {
@@ -9,6 +15,36 @@ function Signup() {
             return;
         }
         console.log(data);
+
+        let dataToSend = {
+            user: {
+                email: data.email,
+                username: data.username,
+                password: data.password
+            }
+        };
+
+        fetch('http://localhost:4000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToSend)
+        })
+        .then(response => {
+            if (response.ok) {
+                let token = response.headers.get('Authorization').split(' ')[1];
+                localStorage.setItem('practice_token', token);
+                return response.json();
+            }
+        })
+        .then(data => {
+            userCtx.userLogin(data.status.data);
+            navigate('/');
+        })
+        .catch(error => {
+            console.log('sign in error:', error);
+        });
     }
 
     return (

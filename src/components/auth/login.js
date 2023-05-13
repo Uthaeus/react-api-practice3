@@ -1,10 +1,45 @@
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router"
+import { useContext } from "react"
+
+import { UserContext } from "../../store/user-context"
 
 function Login() {
     const { register, handleSubmit, error } = useForm();
+    const navigate = useNavigate();
+    const userCtx = useContext(UserContext);
 
     function submitHandler(data) {
         console.log(data);
+
+        let dataToSend = {
+            user: {
+                email: data.email,
+                password: data.password
+            }
+        };
+
+        fetch('http://localhost:4000/users/sign_in', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToSend)
+        })
+        .then(response => {
+            if (response.ok) {
+                let token = response.headers.get('Authorization').split(' ')[1];
+                localStorage.setItem('practice_token', token);
+                return response.json();
+            }
+        })
+        .then(data => {
+            userCtx.userLogin(data.status.data);
+            navigate('/');
+        })
+        .catch(error => {
+            console.log('login error:', error);
+        });
     }
 
     return (
