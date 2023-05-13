@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useEffect, useContext } from "react";
 
+import { UserContext } from "./store/user-context";
 import RootLayout from "./pages/root";
 import HomePage from "./pages/home";
 import ErrorPage from "./pages/error";
@@ -8,6 +10,9 @@ import Posts from "./pages/posts";
 import Products from "./pages/products";
 import Login from "./components/auth/login";
 import Signup from "./components/auth/signup";
+import MeetupDetail from "./components/meetups/meetup-detail";
+import EditMeetup from "./components/meetups/edit-meetup";
+import NewMeetup from "./components/meetups/new-meetup";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +27,18 @@ const router = createBrowserRouter([
       {
         path: "/meetups",
         element: <Meetups />
+      },
+      {
+        path: "/meetups/:id",
+        element: <MeetupDetail />
+      },
+      {
+        path: "/meetups/:id/edit",
+        element: <EditMeetup />
+      },
+      {
+        path: "/meetups/new",
+        element: <NewMeetup />
       },
       {
         path: "/posts",
@@ -44,6 +61,34 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const userCtx = useContext(UserContext);
+
+  useEffect(() => {
+    let token = localStorage.getItem('practice_token');
+
+    if (token && token !== undefined && userCtx.user === null) {
+      fetch('http://localhost:4000/user_current', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong');
+        }
+      })
+      .then(data => {
+        userCtx.userLogin(data);
+      })
+      .catch(error => {
+        console.log('app.js useEffect error:', error);
+      });
+    }
+  }, []);
+
   return <RouterProvider router={router} />;
 }
 

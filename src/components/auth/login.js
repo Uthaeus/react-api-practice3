@@ -10,8 +10,6 @@ function Login() {
     const userCtx = useContext(UserContext);
 
     function submitHandler(data) {
-        console.log(data);
-
         let dataToSend = {
             user: {
                 email: data.email,
