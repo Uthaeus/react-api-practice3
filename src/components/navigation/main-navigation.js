@@ -2,6 +2,10 @@ import { NavLink } from "react-router-dom";
 
 function MainNavigation() {
 
+    function logoutHandler() {
+        console.log('logout');
+    }
+
     return (
         <nav className="main-navigation">
             <div>
@@ -15,7 +19,9 @@ function MainNavigation() {
             </div>
 
             <div>
-                auth
+                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/signup">Signup</NavLink>
+                <button onClick={logoutHandler}>Logout</button>
             </div>
         </nav>
     );

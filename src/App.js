@@ -6,6 +6,8 @@ import ErrorPage from "./pages/error";
 import Meetups from "./pages/meetups";
 import Posts from "./pages/posts";
 import Products from "./pages/products";
+import Login from "./components/auth/login";
+import Signup from "./components/auth/signup";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products />
+      },
+      {
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/signup',
+        element: <Signup />
       }
     ]
   }
