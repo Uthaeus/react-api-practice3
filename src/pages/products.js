@@ -25,14 +25,18 @@ function Products() {
 
 
     return (
-        <div>
-            <h1>Products</h1>
-            <Link to="/products/new">New Product</Link>
-            <hr />
+        <div className="products-container">
+            <div className="products-header">
+                <h1 className="products-title">Products</h1>
+                <Link className="new-product-link" to="/products/new">New Product</Link>
+                <hr />
+            </div>
             {isLoading && <div>Loading...</div>}
-            {!isLoading && products.map((product) => {
-                    return <ProductItem key={product.id} product={product} />;
-                })
+            {!isLoading && (
+                <div className="products-content">
+                    {products.map((product) => <ProductItem key={product.id} product={product} />)}
+                </div>
+            )
             }
         </div>
     );
