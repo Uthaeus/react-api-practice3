@@ -25,12 +25,16 @@ function Meetups() {
     });
 
     return (
-        <div>
-            <h1>Meetups Page</h1>
+        <div className="meetups-container">
+            <h1 className="meetups-title">Meetups Page</h1>
             <Link to='/meetups/new' className="btn btn-primary">Create Meetup</Link>
             <hr />
             {isLoading && <p>Loading...</p>}
-            {!isLoading && meetupsList}
+            {!isLoading && (
+                <div className="meetups-list">
+                    {meetupsList}
+                </div>
+            )}
         </div>
     );
 }

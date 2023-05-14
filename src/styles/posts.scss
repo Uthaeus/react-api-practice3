@@ -1,0 +1,22 @@
+
+.posts-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+
+    .posts-title {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .posts-content {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        padding: 1rem;
+        background-color: rgba(0, 255, 255, 0.201);
+        border-radius: 10px;
+    }
+}

@@ -20,12 +20,16 @@ function Posts() {
     }, []);
 
     return (
-        <div>
-            <h1>Posts Page</h1>
+        <div className="posts-container">
+            <h1 className="posts-title">Posts Page</h1>
             <Link to="/posts/new">Create New Post</Link>
             <hr />
             {isLoading && <p>Loading...</p>}
-            {!isLoading && posts.map(post => <PostItem key={post.id} post={post} />)}
+            {!isLoading && (
+                <div className="posts-content">
+                    {posts.map(post => <PostItem key={post.id} post={post} />)}
+                </div>
+            )}
         </div>
     );
 }
