@@ -4,10 +4,36 @@
     margin: 0 auto;
     padding: 1rem;
 
-    .meetups-title {
-        font-size: 2rem;
-        font-weight: 600;
+    .meetups-header {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+        border-bottom: 1px solid grey;
         margin-bottom: 1rem;
+
+        .meetups-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color:rgb(0, 191, 255);
+        }
+
+        .new-meetup-link {
+            font-size: 1.2em;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color:rgba(0, 255, 255, 0.607);
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                color: #fff;
+                font-size: 1.3em;
+                border-bottom: 2px solid rgba(0, 255, 255, 0.607);
+            }
+        }
     }
 
     .meetups-list {
@@ -27,18 +53,24 @@
     flex-direction: column;
     margin: 2rem auto;
     text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in-out;
 
     .meetup-item-title {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 1rem;
+        padding: 4px 0;
+        text-align: center;
+        color:rgba(0, 255, 255, 0.607);
     }
 
     .meetup-item-author {
+        text-align: end;
         font-weight: 400;
         margin-bottom: 1rem;
-        color:rgba(0, 255, 255, 0.201);
+        padding: 0 1rem;
+        color:rgba(0, 255, 255, 0.607);
     }
 
     .item-author-span {
@@ -52,5 +84,6 @@
         cursor: pointer;
         transform: scale(1.05);
         opacity: 0.8;
+        box-shadow: 4px 4px 10px rgba(66, 73, 49, 0.3);
     }
 }

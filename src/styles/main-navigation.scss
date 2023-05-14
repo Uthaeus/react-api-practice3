@@ -2,9 +2,77 @@
 .main-navigation {
     width: 100%;
     background-color: #333;
-    color: #fff;
-    padding: 10px;
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    .nav-title-wrapper {
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2a1b1b41;
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .welcome-span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #c5a5ef;
+            margin-left: 5px;
+        }
+    }
+
+    .nav-links-wrapper {
+        width: 40%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .auth-links-wrapper {
+        width: 30%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .logout-link {
+            font-size: 1.2em;
+            padding: 4px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: brown;
+            color: blue;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                font-size: 1.3em;
+                color: #fff;
+            }
+        }
+
+    }
+
+    .nav-link {
+        font-size: 1.2em;
+        color: blue;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            font-size: 1.3em;
+            color: #fff;
+        }
+    }
+
+    .link-active {
+        font-size: 1.3em;
+        color: #fff;
+        border-bottom: 2px solid #fff;
+    }
 }
+

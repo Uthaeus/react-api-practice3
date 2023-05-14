@@ -5,7 +5,7 @@ function MeetupItem({ meetup }) {
 
     return (
         <Link className="meetup-item-wrapper">
-            <img src={meetupImage} alt={meetup.title} width='250px' height='300px' />
+            <img src={meetupImage} alt={meetup.title} width='100%' height='300px' />
             <p className="meetup-item-author">posted by: <span className="item-author-span">{meetup.user?.username}</span></p>
             <h2 className="meetup-item-title">title: {meetup.title}</h2>
         </Link>
